@@ -1,117 +1,187 @@
 // backend/routes/expenseRoutes.js
 import express from "express";
 import { authenticateToken } from "../middleware/authMiddleware.js";
-import {
-  getAllExpenses,
-  createExpense,
-  updateExpense,
-  deleteExpense,
-  findExpenseById,
-} from "../database.js";
+import Expense from "../models/Expense.js";
 
 const router = express.Router();
 
 // GET all expenses untuk user yang login
-router.get("/", authenticateToken, (req, res) => {
-  const { start_date, end_date } = req.query;
-  let expenses = getAllExpenses(req.user.id);
+router.get("/", authenticateToken, async (req, res) => {
+  try {
+    const { start_date, end_date } = req.query;
 
-  // Filter berdasarkan tanggal jika parameter tersedia
-  if (start_date) {
-    expenses = expenses.filter((e) => e.date >= start_date);
-  }
-  if (end_date) {
-    expenses = expenses.filter((e) => e.date <= end_date);
-  }
+    // Build query filter
+    const filter = { userId: req.user.id };
 
-  res.json(expenses);
+    // Filter berdasarkan tanggal jika parameter tersedia
+    if (start_date || end_date) {
+      filter.date = {};
+      if (start_date) {
+        filter.date.$gte = new Date(start_date);
+      }
+      if (end_date) {
+        filter.date.$lte = new Date(end_date);
+      }
+    }
+
+    const expenses = await Expense.find(filter).sort({ date: -1 });
+    res.json(expenses);
+  } catch (error) {
+    console.error("Get expenses error:", error);
+    res.status(500).json({
+      message: "Terjadi kesalahan saat mengambil data",
+      error: error.message,
+    });
+  }
 });
 
 // GET single expense
-router.get("/:id", authenticateToken, (req, res) => {
-  const expense = findExpenseById(parseInt(req.params.id), req.user.id);
-  if (!expense) {
-    return res.status(404).json({ message: "Pengeluaran tidak ditemukan" });
+router.get("/:id", authenticateToken, async (req, res) => {
+  try {
+    const expense = await Expense.findOne({
+      _id: req.params.id,
+      userId: req.user.id,
+    });
+
+    if (!expense) {
+      return res.status(404).json({ message: "Pengeluaran tidak ditemukan" });
+    }
+
+    res.json(expense);
+  } catch (error) {
+    console.error("Get expense error:", error);
+    res.status(500).json({
+      message: "Terjadi kesalahan saat mengambil data",
+      error: error.message,
+    });
   }
-  res.json(expense);
 });
 
 // CREATE new expense
-router.post("/", authenticateToken, (req, res) => {
-  const { description, amount, category, date, receipt_path, type } = req.body;
+router.post("/", authenticateToken, async (req, res) => {
+  try {
+    const {
+      description,
+      amount,
+      category,
+      date,
+      receipt_path,
+      type,
+      isRecurring,
+      recurringPeriod,
+    } = req.body;
 
-  // Validasi input
-  if (!description || amount === undefined || !category || !type) {
-    return res
-      .status(400)
-      .json({ message: "description, amount, category, dan type harus diisi" });
+    // Validasi input
+    if (!description || amount === undefined || !category || !type) {
+      return res
+        .status(400)
+        .json({
+          message: "description, amount, category, dan type harus diisi",
+        });
+    }
+
+    // Validasi tipe transaksi
+    if (!["Pemasukan", "Pengeluaran"].includes(type)) {
+      return res
+        .status(400)
+        .json({ message: "type harus Pemasukan atau Pengeluaran" });
+    }
+
+    const newExpense = await Expense.create({
+      userId: req.user.id,
+      description,
+      amount: parseFloat(amount),
+      category,
+      type,
+      date: date || new Date(),
+      receipt_path: receipt_path || null,
+      isRecurring: isRecurring || false,
+      recurringPeriod: recurringPeriod || null,
+    });
+
+    res.status(201).json({
+      message: "Pengeluaran berhasil ditambahkan",
+      expense: newExpense,
+    });
+  } catch (error) {
+    console.error("Create expense error:", error);
+    res.status(500).json({
+      message: "Terjadi kesalahan saat menambahkan data",
+      error: error.message,
+    });
   }
-
-  // Validasi tipe transaksi
-  if (!["Pemasukan", "Pengeluaran"].includes(type)) {
-    return res
-      .status(400)
-      .json({ message: "type harus Pemasukan atau Pengeluaran" });
-  }
-
-  const newExpense = createExpense({
-    userId: req.user.id,
-    description,
-    amount: parseFloat(amount),
-    category,
-    type,
-    date: date || new Date().toISOString().split("T")[0],
-    receipt_path: receipt_path || null,
-  });
-
-  res.status(201).json({
-    message: "Pengeluaran berhasil ditambahkan",
-    expense: newExpense,
-  });
 });
 
 // UPDATE expense
-router.put("/:id", authenticateToken, (req, res) => {
-  const { description, amount, category, date, receipt_path, type } = req.body;
-  const expenseId = parseInt(req.params.id);
+router.put("/:id", authenticateToken, async (req, res) => {
+  try {
+    const {
+      description,
+      amount,
+      category,
+      date,
+      receipt_path,
+      type,
+      isRecurring,
+      recurringPeriod,
+    } = req.body;
 
-  // Validasi expense exists dan milik user
-  const expense = findExpenseById(expenseId, req.user.id);
-  if (!expense) {
-    return res.status(404).json({ message: "Pengeluaran tidak ditemukan" });
+    // Validasi expense exists dan milik user
+    const expense = await Expense.findOne({
+      _id: req.params.id,
+      userId: req.user.id,
+    });
+
+    if (!expense) {
+      return res.status(404).json({ message: "Pengeluaran tidak ditemukan" });
+    }
+
+    // Update fields
+    if (description !== undefined) expense.description = description;
+    if (amount !== undefined) expense.amount = parseFloat(amount);
+    if (category !== undefined) expense.category = category;
+    if (type !== undefined) expense.type = type;
+    if (date !== undefined) expense.date = new Date(date);
+    if (receipt_path !== undefined) expense.receipt_path = receipt_path;
+    if (isRecurring !== undefined) expense.isRecurring = isRecurring;
+    if (recurringPeriod !== undefined)
+      expense.recurringPeriod = recurringPeriod;
+
+    const updatedExpense = await expense.save();
+
+    res.json({
+      message: "Pengeluaran berhasil diperbarui",
+      expense: updatedExpense,
+    });
+  } catch (error) {
+    console.error("Update expense error:", error);
+    res.status(500).json({
+      message: "Terjadi kesalahan saat memperbarui data",
+      error: error.message,
+    });
   }
-
-  const updatedExpense = updateExpense(expenseId, req.user.id, {
-    description: description || expense.description,
-    amount: amount ? parseFloat(amount) : expense.amount,
-    category: category || expense.category,
-    type: type || expense.type,
-    date: date || expense.date,
-    receipt_path:
-      receipt_path !== undefined ? receipt_path : expense.receipt_path,
-  });
-
-  res.json({
-    message: "Pengeluaran berhasil diperbarui",
-    expense: updatedExpense,
-  });
 });
 
 // DELETE expense
-router.delete("/:id", authenticateToken, (req, res) => {
-  const expenseId = parseInt(req.params.id);
+router.delete("/:id", authenticateToken, async (req, res) => {
+  try {
+    // Validasi expense exists dan milik user
+    const expense = await Expense.findOneAndDelete({
+      _id: req.params.id,
+      userId: req.user.id,
+    });
 
-  // Validasi expense exists dan milik user
-  const expense = findExpenseById(expenseId, req.user.id);
-  if (!expense) {
-    return res.status(404).json({ message: "Pengeluaran tidak ditemukan" });
-  }
+    if (!expense) {
+      return res.status(404).json({ message: "Pengeluaran tidak ditemukan" });
+    }
 
-  const deleted = deleteExpense(expenseId, req.user.id);
-  if (deleted) {
     res.json({ message: "Pengeluaran berhasil dihapus" });
-  } else {
-    res.status(500).json({ message: "Gagal menghapus pengeluaran" });
+  } catch (error) {
+    console.error("Delete expense error:", error);
+    res.status(500).json({
+      message: "Terjadi kesalahan saat menghapus data",
+      error: error.message,
+    });
   }
 });
 
