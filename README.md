@@ -9,13 +9,13 @@
 5. [Instalasi dan Setup](#-instalasi-dan-setup)
 ---
 
-## 🌐 Demo Aplikasi
+## Demo Aplikasi
 
 > **Demo Akun:**
 > - Email: `coba@gmail.com`
 > - Password: `coba1234`
 
-##  Fitur Lengkap
+## Fitur Lengkap
 
 ###  Dashboard & Visualisasi
 
@@ -27,7 +27,7 @@
 - **Recent Transactions**: 5 transaksi terbaru dengan badge visual
 - **Quick Actions**: Akses cepat ke tambah transaksi dan laporan
 
-###  Manajemen Transaksi
+### Manajemen Transaksi
 
 - **CRUD Lengkap**: Create, Read, Update, Delete transaksi
 - **Bukti Pembayaran Digital**:
@@ -46,7 +46,7 @@
 - **Transaksi Berulang**: Support untuk transaksi mingguan, bulanan, tahunan
 - **Kategori Lengkap**: Food, Transport, Housing, Entertainment, Other
 
-###  Sistem Anggaran (Budgeting)
+### Sistem Anggaran (Budgeting)
 
 - **Budget Tracking per Kategori**: Set limit anggaran untuk setiap kategori
 - **Progress Bars Visual**:
@@ -58,7 +58,7 @@
 - **LocalStorage Persistence**: Data anggaran tersimpan lokal
 - **Monthly Tracking**: Filter otomatis untuk bulan berjalan
 
-###  Laporan Keuangan
+### Laporan Keuangan
 
 - **Export to Excel (.xlsx)**: Download laporan lengkap dengan styling
 - **Custom Date Range**: Filter laporan berdasarkan periode
@@ -73,7 +73,7 @@
   - Summary section
   - Color-coded income/expense
 
-###  Pengaturan Akun
+### Pengaturan Akun
 
 - **Expandable Cards Interface**: 4 kartu yang bisa di-expand/collapse
 - **Informasi Profil**:
@@ -95,7 +95,7 @@
   - Notifikasi email toggle
   - LocalStorage sync
 
-###  Autentikasi & Keamanan
+### Autentikasi & Keamanan
 
 - **JWT Authentication**: Token-based secure authentication
 - **Password Hashing**: Bcrypt dengan salt rounds
@@ -103,28 +103,7 @@
 - **Session Management**: Auto-logout on token expiry
 - **Secure Password**: Min 6 karakter dengan validation
 
-###  UI/UX Modern
-
-- **Sidebar Navigation**:
-  - Fixed left sidebar (280px)
-  - Grouped menu (UTAMA, ANALISIS & LAPORAN, PENGATURAN)
-  - Active link highlighting
-  - Logout button
-- **Professional Color Scheme**: Blue gradient (#2563eb, #1e40af) untuk tampilan yang lebih profesional
-- **Responsive Design**: Mobile-first, tablet, desktop optimized
-- **Smooth Animations**:
-  - Fade-in, slide-up effects
-  - Hover transitions
-  - Shimmer progress bars
-- **Color Coding**: Visual feedback untuk status dan kategori
-- **Professional Cards**: Shadow, border, hover effects
-- **Modal Dialogs**: Animated modals untuk actions dan preview gambar
-- **Loading States**: Skeleton screens dan spinners
-- **Error Handling**: User-friendly error messages
-
----
-
-## 🛠 Teknologi Stack
+## Teknologi Stack
 
 ### Frontend
 
