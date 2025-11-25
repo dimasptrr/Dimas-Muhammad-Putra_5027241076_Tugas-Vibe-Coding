@@ -1,22 +1,5 @@
 # MoneyFlow Dashboard: Aplikasi Manajemen Keuangan Pribadi Full-Stack
 
-<div align="center">
-
-![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
-![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript)
-![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js)
-![MongoDB](https://img.shields.io/badge/MongoDB-6.0+-47A248?logo=mongodb)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-
-Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisasi data yang mendalam, sistem anggaran, laporan Excel, bukti pembayaran digital, dan UX yang profesional.
-
-[Demo Live](#-demo-aplikasi) • [Fitur](#-fitur-lengkap) • [Instalasi](#-instalasi-dan-setup) • [Screenshot](#-screenshot-aplikasi)
-
-</div>
-
----
-
 ## 📋 Daftar Isi
 
 1. [Demo Aplikasi](#-demo-aplikasi)
