@@ -1,0 +1,22 @@
+# Screenshot Aplikasi
+
+Letakkan screenshot aplikasi Anda di folder ini dengan nama:
+
+- `01-dashboard.png` - Dashboard dengan grafik dan ringkasan
+- `02-transactions.png` - Halaman daftar transaksi dengan filter
+- `03-add-transaction.png` - Form tambah/edit transaksi
+- `04-reports.png` - Laporan keuangan dengan export Excel
+- `05-budgeting.png` - Sistem anggaran dengan progress bars
+- `06-settings.png` - Pengaturan akun expandable cards
+- `07-login.png` - Halaman login
+- `08-register.png` - Halaman register
+- `09-mobile-dashboard.png` - Tampilan mobile dashboard
+- `10-mobile-menu.png` - Tampilan mobile menu/sidebar
+- `11-mobile-budgeting.png` - Tampilan mobile budgeting
+
+Untuk hasil terbaik:
+
+- Gunakan format PNG atau JPG
+- Resolusi minimal 1920x1080 untuk desktop
+- Resolusi 375x812 untuk mobile screenshots
+- Pastikan UI terlihat jelas dan profesional

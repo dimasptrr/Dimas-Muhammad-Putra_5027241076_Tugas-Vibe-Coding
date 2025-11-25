@@ -1,13 +1,13 @@
 // src/App.tsx
 
-import { Outlet, useLocation, Navigate } from 'react-router-dom';
-import Header from './components/Header.tsx'; // Kita buatkan sebentar
-import './App.css'; 
+import { Outlet, useLocation, Navigate } from "react-router-dom";
+import Sidebar from "./components/Sidebar.tsx";
+import "./App.css";
 
 // Fungsi placeholder untuk mengecek status login
 const isAuthenticated = () => {
-    // Implementasi nyata: cek token di localStorage/sessionStorage
-    return localStorage.getItem('jwt_token') ? true : false;
+  // Implementasi nyata: cek token di localStorage/sessionStorage
+  return localStorage.getItem("jwt_token") ? true : false;
 };
 
 // Komponen Pelindung Rute (Route Guard)
@@ -16,28 +16,35 @@ const ProtectedRoute = () => {
   const isAuth = isAuthenticated();
 
   // Daftar rute yang TIDAK membutuhkan otentikasi
-  const publicPaths = ['/login', '/register'];
+  const publicPaths = ["/login", "/register"];
 
   if (!isAuth && !publicPaths.includes(location.pathname)) {
     // Jika belum login dan mencoba akses rute terproteksi, redirect ke Login
     return <Navigate to="/login" replace />;
   }
-  
-  // Render Outlet (halaman yang diminta)
-  return <Outlet />;
+
+  // Jika sudah login, tampilkan layout dengan Sidebar
+  if (isAuth && !publicPaths.includes(location.pathname)) {
+    return (
+      <div className="app-layout">
+        <Sidebar />
+        <main className="main-content">
+          <Outlet />
+        </main>
+      </div>
+    );
+  }
+
+  // Untuk halaman public (login/register), render tanpa Sidebar
+  return (
+    <main className="auth-layout">
+      <Outlet />
+    </main>
+  );
 };
 
 function App() {
-  return (
-    <>
-      <Header /> 
-      <main>
-        {/* ProtectedRoute akan mengecek status sebelum merender halaman */}
-        <ProtectedRoute />
-      </main>
-      {/* Jika diperlukan, tambahkan Footer di sini */}
-    </>
-  );
+  return <ProtectedRoute />;
 }
 
 export default App;

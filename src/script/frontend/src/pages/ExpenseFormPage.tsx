@@ -6,7 +6,6 @@ import type { Expense, NewExpense } from "../types/Expense";
 import {
   createExpense,
   updateExpense,
-  uploadReceipt,
   // fetchExpenseById, // UNCOMMENT INI JIKA SUDAH ADA DI ExpenseService.ts
 } from "../api/ExpenseService";
 
@@ -28,9 +27,6 @@ const ExpenseFormPage: React.FC = () => {
     recurringPeriod: undefined,
   });
   // --- AKHIR INISIALISASI STATE ---
-
-  const [file, setFile] = useState<File | null>(null);
-  const [receiptUrl, setReceiptUrl] = useState<string | null>(null);
 
   // useEffect untuk mengambil data jika mode EDIT
   useEffect(() => {
@@ -74,30 +70,13 @@ const ExpenseFormPage: React.FC = () => {
     }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Logika upload file (jika ada file baru), atau gunakan receiptUrl jika sudah ada
-      let receiptPath: string | null = null;
-      if (file) {
-        const uploadedPath = await uploadReceipt(file);
-        receiptPath = uploadedPath;
-        setReceiptUrl(uploadedPath);
-      } else if (receiptUrl) {
-        receiptPath = receiptUrl;
-      }
-
       // finalExpense adalah data yang siap kirim, bertipe NewExpense (tanpa ID)
       const finalExpense: NewExpense = {
         ...expense,
-        // Pastikan receipt_path dikirim dengan null jika tidak ada bukti
-        receipt_path: receiptPath,
+        receipt_path: null,
       };
 
       if (isEditMode) {
@@ -213,36 +192,6 @@ const ExpenseFormPage: React.FC = () => {
                 <option value="Monthly">📆 Bulanan</option>
                 <option value="Yearly">🗓️ Tahunan</option>
               </select>
-            </div>
-          )}
-
-          {/* Baris 4: Bukti Pembayaran */}
-          <div className="file-upload-row">
-            <label htmlFor="receipt-upload">
-              📎 Bukti Pembayaran (Opsional):
-            </label>
-            <input
-              id="receipt-upload"
-              type="file"
-              onChange={handleFileChange}
-              accept="image/*"
-            />
-          </div>
-
-          {receiptUrl && (
-            <div style={{ marginTop: 15, textAlign: "center" }}>
-              <p style={{ fontWeight: 600, color: "#4a5568" }}>
-                Bukti Terlampir:
-              </p>
-              <img
-                src={receiptUrl}
-                alt="Bukti Pembayaran"
-                style={{
-                  maxWidth: "300px",
-                  borderRadius: "10px",
-                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-                }}
-              />
             </div>
           )}
 

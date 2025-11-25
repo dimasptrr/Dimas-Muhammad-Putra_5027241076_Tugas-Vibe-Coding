@@ -1,119 +1,326 @@
-# 💰 Expense Tracker Pro: Aplikasi Manajemen Keuangan Pribadi (MERN + TS)
+# 💰 Expense Tracker Pro: Aplikasi Manajemen Keuangan Pribadi Full-Stack
 
-Aplikasi ini adalah solusi *full-stack* berbasis web yang dirancang untuk mengelola dan menganalisis keuangan pribadi dengan fokus pada keamanan, visualisasi data yang mendalam, dan *user experience* yang modern.
+<div align="center">
+
+![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
+![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript)
+![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js)
+![MongoDB](https://img.shields.io/badge/MongoDB-6.0+-47A248?logo=mongodb)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
+Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisasi data yang mendalam, sistem anggaran, laporan Excel, dan UX yang profesional.
+
+[Demo Live](#-demo-aplikasi) • [Fitur](#-fitur-lengkap) • [Instalasi](#-instalasi-dan-setup) • [Screenshot](#-screenshot-aplikasi)
+
+</div>
 
 ---
 
 ## 📋 Daftar Isi
 
-1.  [Fitur Unggulan](#-fitur-unggulan)
-2.  [Teknologi dan Stacks](#-teknologi-dan-stacks)
-3.  [Tampilan Utama Aplikasi](#️-tampilan-utama-aplikasi)
-4.  [Instalasi dan Menjalankan Proyek](#-instalasi-dan-menjalankan-proyek)
+1. [Demo Aplikasi](#-demo-aplikasi)
+2. [Fitur Lengkap](#-fitur-lengkap)
+3. [Teknologi Stack](#-teknologi-stack)
+4. [Screenshot Aplikasi](#-screenshot-aplikasi)
+5. [Instalasi dan Setup](#-instalasi-dan-setup)
+6. [Struktur Folder](#-struktur-folder)
+7. [API Endpoints](#-api-endpoints)
+8. [Kontribusi](#-kontribusi)
+9. [Lisensi](#-lisensi)
 
 ---
 
-## Fitur Unggulan
+## 🌐 Demo Aplikasi
 
-Proyek ini telah berhasil mengimplementasikan serangkaian fitur inti dan fitur analisis tingkat lanjut, memastikan fungsionalitas dan keamanan data yang optimal.
+> **Live Demo:** [Link ke aplikasi Anda di sini]
+>
+> **Demo Akun:**
+>
+> - Email: `demo@expensetracker.com`
+> - Password: `demo123`
 
-| Kategori | Fitur | Deskripsi |
-| :--- | :--- | :--- |
-| **Analisis Data** | Visualisasi Saldo & Tren | Menghitung dan menampilkan Total Pemasukan, Total Pengeluaran, dan Saldo Akhir. Saldo defisit (< 0) ditandai dengan warna merah. |
-| | Grafik Lanjutan | Diagram Lingkaran (*Pie Chart*) untuk *Breakdown* Pengeluaran per Kategori, dan Grafik Batang (*Bar Chart*) untuk Tren Pemasukan/Pengeluaran 6 Bulan Terakhir. |
-| **Pengelolaan Data** | Filter Tanggal Kustom | Fitur filter transaksi menggunakan rentang tanggal *Dari* dan *Sampai* yang spesifik. |
-| | CRUD Transaksi | Fitur lengkap untuk membuat, melihat, mengedit, dan menghapus (*CRUD*) transaksi Pemasukan/Pengeluaran. |
-| **Fitur Khusus** | Transaksi Berulang | Opsi penandaan transaksi sebagai 'Berulang' (*Recurring*) untuk manajemen data rutin. |
-| **Keamanan** | Autentikasi Aman | Login/Register menggunakan **JWT** dan *password hashing* **Bcrypt** untuk keamanan sesi. |
-| **Desain** | UI/UX Profesional | Desain *card-based* modern, *input form* terpusat, dan responsivitas penuh pada berbagai ukuran layar. |
+## ✨ Fitur Lengkap
+
+### 🏠 Dashboard & Visualisasi
+
+- **Ringkasan Keuangan Real-time**: Total pemasukan, pengeluaran, dan saldo dengan kartu interaktif
+- **Grafik Analytics**:
+  - Bar Chart: Tren pemasukan vs pengeluaran
+  - Pie Chart: Breakdown pengeluaran per kategori
+  - Line Chart: Tren 6 bulan terakhir
+- **Recent Transactions**: 5 transaksi terbaru dengan badge visual
+- **Quick Actions**: Akses cepat ke tambah transaksi dan laporan
+
+### 📊 Manajemen Transaksi
+
+- **CRUD Lengkap**: Create, Read, Update, Delete transaksi
+- **Multi-Filter System**:
+  - Search by deskripsi
+  - Filter by tanggal (range)
+  - Filter by tipe (Pemasukan/Pengeluaran)
+  - Filter by kategori
+- **Tabel Interaktif**: Dengan pagination, sorting, dan debounced search
+- **Transaksi Berulang**: Support untuk transaksi mingguan, bulanan, tahunan
+- **Kategori Lengkap**: Food, Transport, Housing, Entertainment, Other
+
+### 💼 Sistem Anggaran (Budgeting)
+
+- **Budget Tracking per Kategori**: Set limit anggaran untuk setiap kategori
+- **Progress Bars Visual**:
+  - Hijau: < 60% (aman)
+  - Oranye: 60-80% (waspada)
+  - Merah: > 80% (bahaya)
+- **Budget Warnings**: Alert otomatis jika anggaran terlampaui
+- **Overall Summary**: Total budget, spent, dan remaining
+- **LocalStorage Persistence**: Data anggaran tersimpan lokal
+- **Monthly Tracking**: Filter otomatis untuk bulan berjalan
+
+### 📈 Laporan Keuangan
+
+- **Export to Excel (.xlsx)**: Download laporan lengkap dengan styling
+- **Custom Date Range**: Filter laporan berdasarkan periode
+- **Summary Statistics**:
+  - Total transaksi
+  - Rata-rata pengeluaran
+  - Category breakdown
+- **Charts Integration**: Visualisasi data dalam laporan
+- **Professional Excel Format**:
+  - Header styling dengan warna
+  - Auto-fit columns
+  - Summary section
+  - Color-coded income/expense
+
+### ⚙️ Pengaturan Akun
+
+- **Expandable Cards Interface**: 4 kartu yang bisa di-expand/collapse
+- **Informasi Profil**:
+  - Edit nama lengkap
+  - Email (readonly)
+  - Auto-save to localStorage
+- **Keamanan Password**:
+  - Ubah password dengan validasi
+  - Current password verification
+  - Min 6 karakter
+- **Informasi Akun**:
+  - Status akun (Active/Inactive)
+  - Tanggal registrasi
+  - Email verification status
+  - Tipe akun
+- **Preferensi Personal**:
+  - Pilihan mata uang (IDR/USD/EUR/GBP)
+  - Format tanggal (DD/MM/YYYY, MM/DD/YYYY, YYYY-MM-DD)
+  - Notifikasi email toggle
+  - LocalStorage sync
+
+### 🔐 Autentikasi & Keamanan
+
+- **JWT Authentication**: Token-based secure authentication
+- **Password Hashing**: Bcrypt dengan salt rounds
+- **Protected Routes**: Middleware untuk route protection
+- **Session Management**: Auto-logout on token expiry
+- **Secure Password**: Min 6 karakter dengan validation
+
+### 🎨 UI/UX Modern
+
+- **Sidebar Navigation**:
+  - Fixed left sidebar (280px)
+  - Grouped menu (UTAMA, ANALISIS & LAPORAN, PENGATURAN)
+  - Active link highlighting
+  - Logout button
+- **Responsive Design**: Mobile-first, tablet, desktop optimized
+- **Smooth Animations**:
+  - Fade-in, slide-up effects
+  - Hover transitions
+  - Shimmer progress bars
+- **Color Coding**: Visual feedback untuk status dan kategori
+- **Professional Cards**: Shadow, border, hover effects
+- **Modal Dialogs**: Animated modals untuk actions
+- **Loading States**: Skeleton screens dan spinners
+- **Error Handling**: User-friendly error messages
 
 ---
 
-## Teknologi dan Stacks
+## 🛠 Teknologi Stack
 
-Proyek ini dikembangkan menggunakan tumpukan teknologi **MERN** dengan lapisan **TypeScript** yang ketat untuk skalabilitas dan pemeliharaan kode yang lebih baik.
+### Frontend
 
-| Komponen | Teknologi | Keterangan |
-| :--- | :--- | :--- |
-| **Frontend** | React.js, TypeScript | Antarmuka pengguna yang dinamis dan ketat tipe. |
-| **Routing** | React Router DOM | Manajemen navigasi multi-halaman yang efisien. |
-| **API Client** | Axios | Komunikasi HTTP yang efisien dengan *backend*. |
-| **Backend** | Node.js, Express.js | Server API RESTful yang cepat dan *non-blocking*. |
-| **Database** | MongoDB (Mongoose) | Penyimpanan data NoSQL yang fleksibel dan skema berbasis objek. |
-| **Keamanan** | JWT, Bcrypt | Otentikasi sesi berbasis token dan keamanan kata sandi. |
-| **Visualisasi** | Chart Library (mis. Chart.js/Recharts) | Rendering grafik analisis yang interaktif. |
+| Teknologi        | Versi  | Fungsi                                                 |
+| ---------------- | ------ | ------------------------------------------------------ |
+| **React**        | 19.2.0 | Library UI untuk component-based architecture          |
+| **TypeScript**   | 5.9.3  | Type-safe JavaScript untuk development yang lebih aman |
+| **Vite**         | 7.2.2  | Build tool modern dengan HMR super cepat               |
+| **React Router** | 7.1.1  | Client-side routing untuk SPA navigation               |
+| **Axios**        | 1.7.9  | HTTP client untuk API communication                    |
+| **Recharts**     | 3.5.0  | Library charting untuk visualisasi data                |
 
----
+### Backend
 
-## 3. Tampilan Utama Aplikasi
-
-Berikut adalah visualisasi antarmuka aplikasi, menunjukkan desain yang bersih dan fitur-fitur utamanya.
-
-### 3.1. Dashboard Utama (Analisis dan Saldo)
-
-Menampilkan ringkasan keuangan dan visualisasi data yang kompleks untuk pemahaman cepat.
-
-* **Pengeluaran per Kategori** dan **Tren 6 Bulan Terakhir**.
-
-![Dashboard Overview](Link_ke_Screenshot_2025-11-24_223130.jpg)
-
-### 3.2. Daftar Transaksi & Filter Lanjutan
-
-Tabel transaksi dengan *badge* visual yang jelas untuk jenis transaksi, dilengkapi dengan fitur filter tanggal yang spesifik.
-
-![Transaction List](Link_ke_Screenshot_2025-11-24_223159.jpg)
-
-### 3.3. Form Tambah Transaksi
-
-Desain form yang terpusat dan terorganisir untuk input data yang cepat, termasuk opsi Transaksi Berulang dan Bukti Pembayaran.
-
-![Add New Transaction Form](Link_ke_Screenshot_2025-11-24_223218.jpg)
-
-### 3.4. Halaman Autentikasi
-
-Desain Login/Register yang bersih, profesional, dan fokus di tengah layar.
-
-#### Login Pengguna
-
-![User Login](Link_ke_Screenshot_2025-11-24_223243.png)
-
-#### Daftar Akun Baru
-
-![New Account Registration](Link_ke_Screenshot_2025-11-24_223259.png)
+| Teknologi      | Versi  | Fungsi                                |
+| -------------- | ------ | ------------------------------------- |
+| **Node.js**    | 18+    | JavaScript runtime untuk server       |
+| **Express.js** | 4.18.2 | Web framework untuk RESTful API       |
+| **MongoDB**    | 6.0+   | NoSQL database untuk data persistence |
+| **Mongoose**   | 8.9.5  | ODM untuk MongoDB schema modeling     |
+| **JWT**        | 9.0.2  | Token-based authentication            |
+| **Bcrypt**     | 5.1.1  | Password hashing untuk keamanan       |
+| **CORS**       | 2.8.5  | Cross-origin resource sharing         |
+| **ExcelJS**    | 4.4.0  | Generate Excel files di backend       |
 
 ---
 
-## 4. Instalasi dan Menjalankan Proyek
+## 📸 Screenshot Aplikasi
+
+> **Petunjuk:** Letakkan screenshot Anda di folder `screenshots/` di root project
+
+### 1. 🏠 Dashboard - Halaman Utama
+
+Dashboard dengan ringkasan keuangan real-time, grafik analytics (Bar Chart & Pie Chart), dan 5 transaksi terbaru.
+
+![Dashboard](./screenshots/01-dashboard.png)
+
+---
+
+### 2. 📊 Daftar Transaksi
+
+Tabel lengkap dengan multi-filter (search, date range, type, category), CRUD operations, dan pagination.
+
+![Transactions Page](./screenshots/02-transactions.png)
+
+---
+
+### 3. ✏️ Form Tambah/Edit Transaksi
+
+Form modern untuk input transaksi dengan kategori, tipe (Pemasukan/Pengeluaran), fitur recurring (Mingguan/Bulanan/Tahunan).
+
+![Add Transaction](./screenshots/03-add-transaction.png)
+
+---
+
+### 4. 📈 Laporan Keuangan & Export Excel
+
+Visualisasi data dengan charts interaktif dan fitur download laporan ke format Excel (.xlsx).
+
+![Reports Page](./screenshots/04-reports.png)
+
+---
+
+### 5. 🎯 Sistem Anggaran (Budgeting)
+
+Budget tracking per kategori dengan progress bars visual (hijau/oranye/merah) dan budget warnings.
+
+![Budgeting Page](./screenshots/05-budgeting.png)
+
+---
+
+### 6. ⚙️ Pengaturan Akun
+
+Interface dengan 4 expandable cards: Edit Profil, Ubah Password, Info Akun, dan Preferensi Personal (mata uang, format tanggal, notifikasi).
+
+![Settings Page](./screenshots/06-settings.png)
+
+---
+
+### 7. 🔐 Halaman Login
+
+Halaman autentikasi dengan desain modern dan form validation.
+
+![Login Page](./screenshots/07-login.png)
+
+---
+
+### 8. 📝 Halaman Register
+
+Form pendaftaran akun baru dengan validation lengkap.
+
+![Register Page](./screenshots/08-register.png)
+
+---
+
+### 9. 📱 Responsive Design
+
+Tampilan mobile-friendly yang optimal di berbagai ukuran layar.
+
+<div align="center">
+  <img src="./screenshots/09-mobile-dashboard.png" width="250px" alt="Mobile Dashboard">
+  <img src="./screenshots/10-mobile-menu.png" width="250px" alt="Mobile Menu">
+  <img src="./screenshots/11-mobile-budgeting.png" width="250px" alt="Mobile Budgeting">
+</div>
+
+---
+
+## 🚀 Instalasi dan Setup
 
 ### Prasyarat
 
-Pastikan Anda telah menginstal lingkungan berikut:
+Pastikan sistem Anda sudah terinstall:
 
-* **Node.js** (v16+)
-* **MongoDB** (Lokal atau *Cloud*)
-* **npm** / **Yarn**
+- **Node.js** (v18 atau lebih baru)
+- **MongoDB** (Local atau MongoDB Atlas)
+- **Git**
+- **npm** atau **yarn**
 
-### Langkah-Langkah
+### 1. Clone Repository
 
-1.  **Klon Repositori:**
-    ```bash
-    git clone [https://github.com/USERNAME_ANDA/expense-tracker-pro.git](https://github.com/USERNAME_ANDA/expense-tracker-pro.git)
-    cd expense-tracker-pro
-    ```
+```bash
+git clone https://github.com/dimasptrr/Dimas-Muhammad-Putra_5027241076_Tugas-Vibe-Coding.git
+cd tugasfullstack
+```
 
-2.  **Konfigurasi dan Jalankan Backend:**
-    ```bash
-    cd backend
-    npm install
-    # Buat file .env untuk konfigurasi MONGO_URI dan JWT_SECRET
-    npm start # Berjalan di port 5000 (contoh)
-    ```
+### 2. Setup Backend
 
-3.  **Konfigurasi dan Jalankan Frontend:**
-    ```bash
-    cd ../frontend
-    npm install
-    npm run dev # Berjalan di port 5173 (contoh)
-    ```
+```bash
+cd src/script/backend
 
-Aplikasi siap diakses di browser Anda, biasanya di `http://localhost:5173`.
+# Install dependencies
+npm install
+
+# Buat file .env dan tambahkan konfigurasi:
+# MONGO_URI=mongodb://localhost:27017/expense_tracker
+# JWT_SECRET=your_super_secret_jwt_key_here
+# PORT=5000
+
+# Jalankan server
+npm start
+```
+
+Server backend akan berjalan di `http://localhost:5000`
+
+### 3. Setup Frontend
+
+```bash
+cd ../frontend
+
+# Install dependencies
+npm install
+
+# Jalankan development server
+npm run dev
+```
+
+Frontend akan berjalan di `http://localhost:5173`
+
+### 4. Akses Aplikasi
+
+Buka browser dan akses:
+
+- **Frontend:** `http://localhost:5173`
+- **Backend API:** `http://localhost:5000/api`
+
+## 👨‍💻 Author
+
+**Dimas Muhammad Putra**
+
+- NRP: 5027241076
+- GitHub: [@dimasptrr](https://github.com/dimasptrr)
+- Repository: [Dimas-Muhammad-Putra_5027241076_Tugas-Vibe-Coding](https://github.com/dimasptrr/Dimas-Muhammad-Putra_5027241076_Tugas-Vibe-Coding)
+
+---
+
+<div align="center">
+
+**⭐ Jika project ini bermanfaat, berikan star ya! ⭐**
+
+Made with ❤️ by Dimas Muhammad Putra
+
+</div>

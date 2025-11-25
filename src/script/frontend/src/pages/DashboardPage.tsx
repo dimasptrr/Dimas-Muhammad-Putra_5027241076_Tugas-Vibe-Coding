@@ -218,7 +218,7 @@ const DashboardPage: React.FC = () => {
       <div className="header-dashboard">
         <h1>Catatan Keuangan Pribadi</h1>
         <Link to="/expenses/add">
-          <button className="btn-add-transaction">+ Tambah Transaksi</button>
+          <button className="btn-add-transaction">Tambah Transaksi</button>
         </Link>
       </div>
 
