@@ -24,25 +24,17 @@ Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisa
 3. [Teknologi Stack](#-teknologi-stack)
 4. [Screenshot Aplikasi](#-screenshot-aplikasi)
 5. [Instalasi dan Setup](#-instalasi-dan-setup)
-6. [Struktur Folder](#-struktur-folder)
-7. [API Endpoints](#-api-endpoints)
-8. [Kontribusi](#-kontribusi)
-9. [Lisensi](#-lisensi)
-
 ---
 
 ## 🌐 Demo Aplikasi
 
-> **Live Demo:** [Link ke aplikasi Anda di sini]
->
 > **Demo Akun:**
->
-> - Email: `demo@moneyflow.com`
-> - Password: `demo123`
+> - Email: `coba@gmail.com`
+> - Password: `coba1234`
 
-## ✨ Fitur Lengkap
+##  Fitur Lengkap
 
-### 🏠 Dashboard & Visualisasi
+###  Dashboard & Visualisasi
 
 - **Ringkasan Keuangan Real-time**: Total pemasukan, pengeluaran, dan saldo dengan kartu interaktif
 - **Grafik Analytics**:
@@ -52,7 +44,7 @@ Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisa
 - **Recent Transactions**: 5 transaksi terbaru dengan badge visual
 - **Quick Actions**: Akses cepat ke tambah transaksi dan laporan
 
-### 📊 Manajemen Transaksi
+###  Manajemen Transaksi
 
 - **CRUD Lengkap**: Create, Read, Update, Delete transaksi
 - **Bukti Pembayaran Digital**:
@@ -71,7 +63,7 @@ Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisa
 - **Transaksi Berulang**: Support untuk transaksi mingguan, bulanan, tahunan
 - **Kategori Lengkap**: Food, Transport, Housing, Entertainment, Other
 
-### 💼 Sistem Anggaran (Budgeting)
+###  Sistem Anggaran (Budgeting)
 
 - **Budget Tracking per Kategori**: Set limit anggaran untuk setiap kategori
 - **Progress Bars Visual**:
@@ -83,7 +75,7 @@ Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisa
 - **LocalStorage Persistence**: Data anggaran tersimpan lokal
 - **Monthly Tracking**: Filter otomatis untuk bulan berjalan
 
-### 📈 Laporan Keuangan
+###  Laporan Keuangan
 
 - **Export to Excel (.xlsx)**: Download laporan lengkap dengan styling
 - **Custom Date Range**: Filter laporan berdasarkan periode
@@ -98,7 +90,7 @@ Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisa
   - Summary section
   - Color-coded income/expense
 
-### ⚙️ Pengaturan Akun
+###  Pengaturan Akun
 
 - **Expandable Cards Interface**: 4 kartu yang bisa di-expand/collapse
 - **Informasi Profil**:
@@ -120,7 +112,7 @@ Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisa
   - Notifikasi email toggle
   - LocalStorage sync
 
-### 🔐 Autentikasi & Keamanan
+###  Autentikasi & Keamanan
 
 - **JWT Authentication**: Token-based secure authentication
 - **Password Hashing**: Bcrypt dengan salt rounds
@@ -128,7 +120,7 @@ Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisa
 - **Session Management**: Auto-logout on token expiry
 - **Secure Password**: Min 6 karakter dengan validation
 
-### 🎨 UI/UX Modern
+###  UI/UX Modern
 
 - **Sidebar Navigation**:
   - Fixed left sidebar (280px)
@@ -177,87 +169,73 @@ Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisa
 
 ---
 
-## 📸 Screenshot Aplikasi
+## Screenshot Aplikasi
 
-> **Petunjuk:** Letakkan screenshot Anda di folder `screenshots/` di root project
-
-### 1. 🏠 Dashboard - Halaman Utama
+### 1. Dashboard - Halaman Utama
 
 Dashboard dengan ringkasan keuangan real-time, grafik analytics (Bar Chart & Pie Chart), dan 5 transaksi terbaru.
 
-![Dashboard](./screenshots/01-dashboard.png)
+![Dashboard](./screenshots/dashboard.png)
 
 ---
 
-### 2. 📊 Daftar Transaksi
+### 2. Daftar Transaksi
 
 Tabel lengkap dengan multi-filter (search, date range, type, category), CRUD operations, dan pagination.
 
-![Transactions Page](./screenshots/02-transactions.png)
+![Transactions Page](./screenshots/daftartransaksi.png)
 
 ---
 
-### 3. ✏️ Form Tambah/Edit Transaksi
+### 3. Form Tambah/Edit Transaksi
 
 Form modern untuk input transaksi dengan kategori, tipe (Pemasukan/Pengeluaran), fitur recurring (Mingguan/Bulanan/Tahunan).
 
-![Add Transaction](./screenshots/03-add-transaction.png)
+![Add Transaction](./screenshots/tambahtransaksi.png)
 
 ---
 
-### 4. 📈 Laporan Keuangan & Export Excel
+### 4. Laporan Keuangan & Export Excel
 
 Visualisasi data dengan charts interaktif dan fitur download laporan ke format Excel (.xlsx).
 
-![Reports Page](./screenshots/04-reports.png)
+![Reports Page](./screenshots/laporanperiodik.png)
 
 ---
 
-### 5. 🎯 Sistem Anggaran (Budgeting)
+### 5. Sistem Anggaran (Budgeting)
 
 Budget tracking per kategori dengan progress bars visual (hijau/oranye/merah) dan budget warnings.
 
-![Budgeting Page](./screenshots/05-budgeting.png)
+![Budgeting Page](./screenshots/anggaran.png)
 
 ---
 
-### 6. ⚙️ Pengaturan Akun
+### 6. Pengaturan Akun
 
 Interface dengan 4 expandable cards: Edit Profil, Ubah Password, Info Akun, dan Preferensi Personal (mata uang, format tanggal, notifikasi).
 
-![Settings Page](./screenshots/06-settings.png)
+![Settings Page](./screenshots/setting.png)
 
 ---
 
-### 7. 🔐 Halaman Login
+### 7. Halaman Login
 
 Halaman autentikasi dengan desain modern dan form validation.
 
-![Login Page](./screenshots/07-login.png)
+![Login Page](./screenshots/loginpweb.png)
 
 ---
 
-### 8. 📝 Halaman Register
+### 8. Halaman Register
 
 Form pendaftaran akun baru dengan validation lengkap.
 
-![Register Page](./screenshots/08-register.png)
+![Register Page](./screenshots/register.png)
 
 ---
 
-### 9. 📱 Responsive Design
-
-Tampilan mobile-friendly yang optimal di berbagai ukuran layar.
-
-<div align="center">
-  <img src="./screenshots/09-mobile-dashboard.png" width="250px" alt="Mobile Dashboard">
-  <img src="./screenshots/10-mobile-menu.png" width="250px" alt="Mobile Menu">
-  <img src="./screenshots/11-mobile-budgeting.png" width="250px" alt="Mobile Budgeting">
-</div>
-
----
-
-## 🚀 Instalasi dan Setup
+##  Instalasi dan Setup
 
 ### Prasyarat
 
@@ -315,11 +293,10 @@ Buka browser dan akses:
 - **Frontend:** `http://localhost:5173`
 - **Backend API:** `http://localhost:5000/api`
 
-## 👨‍💻 Author
+## Author
 
 **Dimas Muhammad Putra**
 
-- NRP: 5027241076
 - GitHub: [@dimasptrr](https://github.com/dimasptrr)
 - Repository: [Dimas-Muhammad-Putra_5027241076_Tugas-Vibe-Coding](https://github.com/dimasptrr/Dimas-Muhammad-Putra_5027241076_Tugas-Vibe-Coding)
 
@@ -327,8 +304,6 @@ Buka browser dan akses:
 
 <div align="center">
 
-**⭐ Jika project ini bermanfaat, berikan star ya! ⭐**
-
-Made with ❤️ by Dimas Muhammad Putra
+Made with by Dimas Muhammad Putra
 
 </div>
