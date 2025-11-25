@@ -50,23 +50,40 @@ export const deleteExpense = async (id: number) => {
   await axios.delete(`${API_URL}/${id}`, getAuthHeaders());
 };
 
-// 5. UPLOAD FILE (Memenuhi Kebutuhan 3️⃣)
-export const uploadReceipt = async (file: File): Promise<string> => {
-  const formData = new FormData();
-  formData.append("receipt", file);
+// 5. UPLOAD FILE - Convert to Base64
+export const uploadReceipt = async (
+  file: File
+): Promise<{ data: string; mimetype: string }> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
 
-  // Ganti dengan endpoint upload file di backend Anda
-  const response = await axios.post(
-    "http://localhost:5000/api/upload",
-    formData,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        ...getAuthHeaders().headers,
-      },
-    }
-  );
+    reader.onload = async () => {
+      try {
+        const base64String = reader.result as string;
 
-  // Asumsikan backend merespons dengan path file yang diunggah
-  return response.data.filePath;
+        // Kirim ke backend untuk validasi
+        const response = await axios.post(
+          "http://localhost:5000/api/expenses/upload",
+          {
+            image: base64String,
+            mimetype: file.type,
+          },
+          getAuthHeaders()
+        );
+
+        resolve({
+          data: response.data.data,
+          mimetype: response.data.mimetype,
+        });
+      } catch (error) {
+        reject(error);
+      }
+    };
+
+    reader.onerror = () => {
+      reject(new Error("Gagal membaca file"));
+    };
+
+    reader.readAsDataURL(file);
+  });
 };

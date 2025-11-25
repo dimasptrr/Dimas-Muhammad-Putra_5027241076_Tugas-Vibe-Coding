@@ -34,7 +34,7 @@ body {
 
 /* Auth Layout (untuk login/register tanpa sidebar) */
 .auth-layout {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   min-height: 100vh;
   padding: 0;
 }
@@ -61,7 +61,7 @@ body {
 .sidebar-header {
   padding: 30px 25px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
 }
 
 .sidebar-header h2 {
@@ -120,7 +120,7 @@ body {
 .nav-item.active {
   background: rgba(102, 126, 234, 0.2);
   color: white;
-  border-left-color: #667eea;
+  border-left-color: #2563eb;
   font-weight: 600;
 }
 
@@ -185,14 +185,14 @@ body {
   font-weight: 700;
   color: #1a202c;
   margin: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .btn-add-transaction {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   color: white;
   padding: 12px 24px;
   font-weight: 600;
@@ -208,7 +208,7 @@ body {
 }
 
 .btn-add-transaction::before {
-  content: "➕";
+  content: "";
 }
 
 .btn-add-transaction:hover {
@@ -386,7 +386,7 @@ body {
 
 .date-range-filter input[type="date"]:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #2563eb;
   background: white;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
@@ -462,7 +462,7 @@ body {
 }
 
 .filter-buttons button.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
@@ -572,7 +572,7 @@ body {
 }
 
 .icon-btn.edit-btn {
-  color: #667eea;
+  color: #2563eb;
 }
 
 .icon-btn.delete-btn {
@@ -593,7 +593,7 @@ body {
   justify-content: center;
   min-height: 400px;
   font-size: 1.2rem;
-  color: #667eea;
+  color: #2563eb;
   font-weight: 600;
   flex-direction: column;
   gap: 20px;
@@ -652,7 +652,7 @@ body {
   margin: 0 0 30px 0;
   font-size: 1.8rem;
   text-align: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -680,7 +680,7 @@ body {
 
 .auth-card input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #2563eb;
   background: white;
   box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
@@ -688,7 +688,7 @@ body {
 .btn-primary {
   height: 50px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   color: white;
   border: none;
   cursor: pointer;
@@ -718,14 +718,14 @@ body {
 }
 
 .auth-card .auth-footer a {
-  color: #667eea;
+  color: #2563eb;
   font-weight: 700;
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .auth-card .auth-footer a:hover {
-  color: #764ba2;
+  color: #1e40af;
 }
 
 /* ===========================
@@ -751,7 +751,7 @@ body {
   font-size: 1.8rem;
   font-weight: 700;
   color: #2d3748;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -794,7 +794,7 @@ body {
 .form-row > select:focus,
 .form-row > textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #2563eb;
   background: white;
   box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
@@ -836,7 +836,7 @@ input[type="number"] {
   width: 20px;
   height: 20px;
   cursor: pointer;
-  accent-color: #667eea;
+  accent-color: #2563eb;
 }
 
 .checkbox-row label {
@@ -848,7 +848,7 @@ input[type="number"] {
 .btn-submit-form {
   width: 100%;
   height: 50px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -876,7 +876,7 @@ input[type="number"] {
 }
 
 .file-upload-row:hover {
-  border-color: #667eea;
+  border-color: #2563eb;
   background: white;
 }
 
@@ -975,7 +975,7 @@ input[type="number"] {
   font-weight: 700;
   color: #1a202c;
   margin: 0 0 10px 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1039,7 +1039,7 @@ input[type="number"] {
 .expand-icon {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #667eea;
+  color: #2563eb;
   transition: transform 0.3s ease;
 }
 
@@ -1097,7 +1097,7 @@ input[type="number"] {
 .form-group select:focus,
 .form-select:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -1315,7 +1315,7 @@ input[type="number"] {
 .filter-input:focus,
 .filter-select:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -1351,7 +1351,7 @@ input[type="number"] {
 }
 
 .transaction-table thead {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   color: white;
 }
 
@@ -1430,7 +1430,7 @@ input[type="number"] {
 
 .btn-edit {
   background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
+  color: #2563eb;
 }
 
 .btn-edit:hover {
@@ -1515,7 +1515,7 @@ input[type="number"] {
 
 .btn-apply-filter {
   padding: 12px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -1665,7 +1665,7 @@ input[type="number"] {
 .budget-amount {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #667eea;
+  color: #2563eb;
   margin: 10px 0;
 }
 
@@ -1727,7 +1727,7 @@ input[type="number"] {
 }
 
 .btn-edit-budget {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -1837,7 +1837,7 @@ input[type="number"] {
 }
 
 .btn-save {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   color: white;
 }
 
@@ -1888,6 +1888,135 @@ input[type="number"] {
   background-color: #f7fafc;
   cursor: not-allowed;
   opacity: 0.7;
+}
+
+/* ===========================
+   RECEIPT MODAL & VIEW BUTTON
+   =========================== */
+
+.btn-view-receipt {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-view-receipt:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+}
+
+.receipt-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.receipt-modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+  position: relative;
+}
+
+.receipt-modal-content h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  text-align: center;
+}
+
+.receipt-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.receipt-modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.btn-close-modal {
+  background: #e2e8f0;
+  color: #4a5568;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-close-modal:hover {
+  background: #cbd5e0;
+}
+
+.btn-open-new-tab {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-open-new-tab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* End of Stylesheet */

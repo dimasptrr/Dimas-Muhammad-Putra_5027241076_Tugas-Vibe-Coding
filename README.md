@@ -1,4 +1,4 @@
-# 💰 Expense Tracker Pro: Aplikasi Manajemen Keuangan Pribadi Full-Stack
+# MoneyFlow Dashboard: Aplikasi Manajemen Keuangan Pribadi Full-Stack
 
 <div align="center">
 
@@ -9,7 +9,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-6.0+-47A248?logo=mongodb)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisasi data yang mendalam, sistem anggaran, laporan Excel, dan UX yang profesional.
+Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisasi data yang mendalam, sistem anggaran, laporan Excel, bukti pembayaran digital, dan UX yang profesional.
 
 [Demo Live](#-demo-aplikasi) • [Fitur](#-fitur-lengkap) • [Instalasi](#-instalasi-dan-setup) • [Screenshot](#-screenshot-aplikasi)
 
@@ -37,7 +37,7 @@ Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisa
 >
 > **Demo Akun:**
 >
-> - Email: `demo@expensetracker.com`
+> - Email: `demo@moneyflow.com`
 > - Password: `demo123`
 
 ## ✨ Fitur Lengkap
@@ -55,6 +55,13 @@ Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisa
 ### 📊 Manajemen Transaksi
 
 - **CRUD Lengkap**: Create, Read, Update, Delete transaksi
+- **Bukti Pembayaran Digital**:
+  - Upload gambar bukti pembayaran (jpeg, jpg, png, gif)
+  - Penyimpanan base64 langsung di database (tanpa folder)
+  - Preview gambar saat upload
+  - View modal untuk melihat bukti dengan zoom
+  - Validasi ukuran file (max 5MB)
+  - Download/buka di tab baru
 - **Multi-Filter System**:
   - Search by deskripsi
   - Filter by tanggal (range)
@@ -128,6 +135,7 @@ Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisa
   - Grouped menu (UTAMA, ANALISIS & LAPORAN, PENGATURAN)
   - Active link highlighting
   - Logout button
+- **Professional Color Scheme**: Blue gradient (#2563eb, #1e40af) untuk tampilan yang lebih profesional
 - **Responsive Design**: Mobile-first, tablet, desktop optimized
 - **Smooth Animations**:
   - Fade-in, slide-up effects
@@ -135,7 +143,7 @@ Aplikasi web full-stack modern untuk mengelola keuangan pribadi dengan visualisa
   - Shimmer progress bars
 - **Color Coding**: Visual feedback untuk status dan kategori
 - **Professional Cards**: Shadow, border, hover effects
-- **Modal Dialogs**: Animated modals untuk actions
+- **Modal Dialogs**: Animated modals untuk actions dan preview gambar
 - **Loading States**: Skeleton screens dan spinners
 - **Error Handling**: User-friendly error messages
 
@@ -276,7 +284,7 @@ cd src/script/backend
 npm install
 
 # Buat file .env dan tambahkan konfigurasi:
-# MONGO_URI=mongodb://localhost:27017/expense_tracker
+# MONGODB_URI=mongodb://localhost:27017/moneyflow_dashboard
 # JWT_SECRET=your_super_secret_jwt_key_here
 # PORT=5000
 

@@ -16,7 +16,7 @@ const Sidebar: React.FC = () => {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <h2>💰 Expense Tracker</h2>
+        <h2>MoneyFlow Dashboard</h2>
         <p className="sidebar-subtitle">Kelola Keuangan Anda</p>
       </div>
 

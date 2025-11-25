@@ -11,7 +11,8 @@ export interface Expense {
   date: string; // Tanggal
   category: string; // Kategori (bisa disederhanakan dari Food, Transport, dll)
   type: TransactionType; // <--- FIELD BARU: Pemasukan atau Pengeluaran
-  receipt_path?: string | null;
+  receipt_data?: string | null;
+  receipt_mimetype?: string | null;
   isRecurring?: boolean; // Transaksi berulang
   recurringPeriod?: "Monthly" | "Weekly" | "Yearly"; // Periode pengulangan
 }

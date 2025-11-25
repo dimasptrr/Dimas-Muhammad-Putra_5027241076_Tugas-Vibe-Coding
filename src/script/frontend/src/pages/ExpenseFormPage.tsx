@@ -6,6 +6,7 @@ import type { Expense, NewExpense } from "../types/Expense";
 import {
   createExpense,
   updateExpense,
+  uploadReceipt,
   // fetchExpenseById, // UNCOMMENT INI JIKA SUDAH ADA DI ExpenseService.ts
 } from "../api/ExpenseService";
 
@@ -27,6 +28,12 @@ const ExpenseFormPage: React.FC = () => {
     recurringPeriod: undefined,
   });
   // --- AKHIR INISIALISASI STATE ---
+
+  const [file, setFile] = useState<File | null>(null);
+  const [receiptData, setReceiptData] = useState<{
+    data: string;
+    mimetype: string;
+  } | null>(null);
 
   // useEffect untuk mengambil data jika mode EDIT
   useEffect(() => {
@@ -70,27 +77,58 @@ const ExpenseFormPage: React.FC = () => {
     }));
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      // Logika upload file (jika ada file baru)
+      let receiptUpload: { data: string; mimetype: string } | null = null;
+      if (file) {
+        try {
+          console.log("Uploading file:", file.name);
+          receiptUpload = await uploadReceipt(file);
+          console.log("Upload success");
+          setReceiptData(receiptUpload);
+        } catch (uploadError: any) {
+          console.error("Upload error:", uploadError);
+          alert(
+            `Gagal upload bukti pembayaran: ${
+              uploadError.response?.data?.message || uploadError.message
+            }`
+          );
+          return; // Stop execution if upload fails
+        }
+      } else if (receiptData) {
+        receiptUpload = receiptData;
+      }
+
       // finalExpense adalah data yang siap kirim, bertipe NewExpense (tanpa ID)
       const finalExpense: NewExpense = {
         ...expense,
-        receipt_path: null,
+        receipt_data: receiptUpload?.data || null,
+        receipt_mimetype: receiptUpload?.mimetype || null,
       };
 
       if (isEditMode) {
         await updateExpense(Number(id), finalExpense);
+        alert("✅ Transaksi berhasil diubah!");
       } else {
         await createExpense(finalExpense);
+        alert("✅ Transaksi berhasil ditambahkan!");
       }
 
       navigate("/");
-    } catch (error) {
+    } catch (error: any) {
+      console.error("Submit error:", error);
       alert(
-        `Gagal ${
-          isEditMode ? "mengubah" : "menambah"
-        } pengeluaran. Pastikan backend berjalan.`
+        `Gagal ${isEditMode ? "mengubah" : "menambah"} transaksi: ${
+          error.response?.data?.message || error.message
+        }`
       );
     }
   };
@@ -192,6 +230,36 @@ const ExpenseFormPage: React.FC = () => {
                 <option value="Monthly">📆 Bulanan</option>
                 <option value="Yearly">🗓️ Tahunan</option>
               </select>
+            </div>
+          )}
+
+          {/* Baris 4: Bukti Pembayaran */}
+          <div className="file-upload-row">
+            <label htmlFor="receipt-upload">
+              📎 Bukti Pembayaran (Opsional):
+            </label>
+            <input
+              id="receipt-upload"
+              type="file"
+              onChange={handleFileChange}
+              accept="image/*"
+            />
+          </div>
+
+          {receiptData && (
+            <div style={{ marginTop: 15, textAlign: "center" }}>
+              <p style={{ fontWeight: 600, color: "#4a5568" }}>
+                Bukti Terlampir:
+              </p>
+              <img
+                src={receiptData.data}
+                alt="Bukti Pembayaran"
+                style={{
+                  maxWidth: "300px",
+                  borderRadius: "10px",
+                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                }}
+              />
             </div>
           )}
 

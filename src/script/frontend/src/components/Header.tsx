@@ -16,7 +16,7 @@ const Header: React.FC = () => {
     <header className="main-app-header">
       <h1 style={{ margin: 0 }}>
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-          💰 Expense Tracker Pro
+          MoneyFlow Dashboard
         </Link>
       </h1>
       <nav>

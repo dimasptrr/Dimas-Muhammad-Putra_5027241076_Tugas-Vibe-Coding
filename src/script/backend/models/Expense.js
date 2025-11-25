@@ -36,8 +36,12 @@ const expenseSchema = new mongoose.Schema(
       required: true,
       default: Date.now,
     },
-    receipt_path: {
-      type: String,
+    receipt_data: {
+      type: String, // Base64 encoded image
+      default: null,
+    },
+    receipt_mimetype: {
+      type: String, // e.g., 'image/jpeg', 'image/png'
       default: null,
     },
     // Fitur Transaksi Berulang

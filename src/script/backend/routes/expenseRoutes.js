@@ -5,6 +5,48 @@ import Expense from "../models/Expense.js";
 
 const router = express.Router();
 
+// POST endpoint untuk upload bukti pembayaran (base64)
+router.post("/upload", authenticateToken, async (req, res) => {
+  try {
+    const { image, mimetype } = req.body;
+
+    if (!image || !mimetype) {
+      return res.status(400).json({
+        message: "Data gambar tidak lengkap",
+      });
+    }
+
+    // Validasi mimetype
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
+    if (!allowedTypes.includes(mimetype)) {
+      return res.status(400).json({
+        message: "Hanya file gambar yang diperbolehkan (jpeg, jpg, png, gif)",
+      });
+    }
+
+    // Validasi ukuran base64 (approx 5MB = 6.7MB base64)
+    const sizeInBytes = (image.length * 3) / 4;
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (sizeInBytes > maxSize) {
+      return res.status(400).json({
+        message: "File terlalu besar. Maksimal 5MB",
+      });
+    }
+
+    res.json({
+      message: "File berhasil diproses",
+      data: image,
+      mimetype: mimetype,
+    });
+  } catch (error) {
+    console.error("Upload error:", error);
+    res.status(500).json({
+      message: "Gagal memproses file",
+      error: error.message,
+    });
+  }
+});
+
 // GET all expenses untuk user yang login
 router.get("/", authenticateToken, async (req, res) => {
   try {
@@ -73,11 +115,9 @@ router.post("/", authenticateToken, async (req, res) => {
 
     // Validasi input
     if (!description || amount === undefined || !category || !type) {
-      return res
-        .status(400)
-        .json({
-          message: "description, amount, category, dan type harus diisi",
-        });
+      return res.status(400).json({
+        message: "description, amount, category, dan type harus diisi",
+      });
     }
 
     // Validasi tipe transaksi
@@ -94,7 +134,8 @@ router.post("/", authenticateToken, async (req, res) => {
       category,
       type,
       date: date || new Date(),
-      receipt_path: receipt_path || null,
+      receipt_data: req.body.receipt_data || null,
+      receipt_mimetype: req.body.receipt_mimetype || null,
       isRecurring: isRecurring || false,
       recurringPeriod: recurringPeriod || null,
     });
@@ -120,7 +161,8 @@ router.put("/:id", authenticateToken, async (req, res) => {
       amount,
       category,
       date,
-      receipt_path,
+      receipt_data,
+      receipt_mimetype,
       type,
       isRecurring,
       recurringPeriod,
@@ -142,7 +184,9 @@ router.put("/:id", authenticateToken, async (req, res) => {
     if (category !== undefined) expense.category = category;
     if (type !== undefined) expense.type = type;
     if (date !== undefined) expense.date = new Date(date);
-    if (receipt_path !== undefined) expense.receipt_path = receipt_path;
+    if (receipt_data !== undefined) expense.receipt_data = receipt_data;
+    if (receipt_mimetype !== undefined)
+      expense.receipt_mimetype = receipt_mimetype;
     if (isRecurring !== undefined) expense.isRecurring = isRecurring;
     if (recurringPeriod !== undefined)
       expense.recurringPeriod = recurringPeriod;

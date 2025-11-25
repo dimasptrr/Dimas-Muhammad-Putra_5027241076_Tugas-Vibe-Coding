@@ -17,6 +17,10 @@ const TransactionsPage: React.FC = () => {
   const [filterCategory, setFilterCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Modal state for viewing receipt
+  const [showReceiptModal, setShowReceiptModal] = useState(false);
+  const [selectedReceipt, setSelectedReceipt] = useState<string | null>(null);
+
   const navigate = useNavigate();
   const isInitialMount = useRef(true);
   const filterTimeout = useRef<number | null>(null);
@@ -100,6 +104,17 @@ const TransactionsPage: React.FC = () => {
     } catch (err: any) {
       alert(err?.response?.data?.message || "Gagal menghapus transaksi");
     }
+  };
+
+  // View receipt
+  const handleViewReceipt = (receiptPath: string) => {
+    setSelectedReceipt(receiptPath);
+    setShowReceiptModal(true);
+  };
+
+  const closeReceiptModal = () => {
+    setShowReceiptModal(false);
+    setSelectedReceipt(null);
   };
 
   // Calculate summary
@@ -262,6 +277,7 @@ const TransactionsPage: React.FC = () => {
                 <th>Kategori</th>
                 <th>Tipe</th>
                 <th>Jumlah</th>
+                <th>Bukti</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -305,6 +321,21 @@ const TransactionsPage: React.FC = () => {
                     </strong>
                   </td>
                   <td>
+                    {expense.receipt_data ? (
+                      <button
+                        className="btn-view-receipt"
+                        onClick={() => handleViewReceipt(expense.receipt_data!)}
+                        title="Lihat Bukti"
+                      >
+                        📎 Lihat
+                      </button>
+                    ) : (
+                      <span style={{ color: "#a0aec0", fontSize: "0.875rem" }}>
+                        Tidak ada
+                      </span>
+                    )}
+                  </td>
+                  <td>
                     <div className="action-buttons">
                       <button
                         className="btn-edit"
@@ -336,6 +367,48 @@ const TransactionsPage: React.FC = () => {
           <strong>{expenses.length}</strong> transaksi
         </p>
       </div>
+
+      {/* Receipt Modal */}
+      {showReceiptModal && selectedReceipt && (
+        <div className="modal-overlay" onClick={closeReceiptModal}>
+          <div
+            className="modal-content receipt-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="modal-header">
+              <h2>📎 Bukti Pembayaran</h2>
+              <button className="btn-close-modal" onClick={closeReceiptModal}>
+                ✕
+              </button>
+            </div>
+            <div className="modal-body">
+              <img
+                src={selectedReceipt}
+                alt="Bukti Pembayaran"
+                style={{
+                  width: "100%",
+                  maxHeight: "70vh",
+                  objectFit: "contain",
+                  borderRadius: "8px",
+                }}
+              />
+            </div>
+            <div className="modal-footer">
+              <a
+                href={selectedReceipt}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                🔗 Buka di Tab Baru
+              </a>
+              <button className="btn-cancel" onClick={closeReceiptModal}>
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
